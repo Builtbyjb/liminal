@@ -19,13 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          uv sync --frozen --no-cache
-
-      - name: Install linters
-        run: |
-          uv tool install ruff
-          uv tool install "mypy==1.15.0"
+          python3 -m pip install -e .
 
       - name: Run ruff
         run: ruff check .
