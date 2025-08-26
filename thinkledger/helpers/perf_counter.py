@@ -6,7 +6,7 @@ from utils.context import DEBUG
 from utils.logger import log
 
 
-def perf(func: Callable[..., Any]) -> Callable[..., Any]:
+def perf_counter(func: Callable[..., Any]) -> Callable[..., Any]:
   """
   Logs how long a function takes to execute
   """

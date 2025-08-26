@@ -4,10 +4,10 @@ from google import genai
 from typing import Any
 from utils.types import JournalEntry
 from utils.context import DEBUG
-from helpers.perf import perf
+from helpers.perf_counter import perf_counter
 
 
-@perf
+@perf_counter
 def gemini_response(prompt: str) -> Any:
   gemini_api_key = os.getenv("GEMINI_API_KEY")
   client = genai.Client(api_key=gemini_api_key)
@@ -18,7 +18,7 @@ def gemini_response(prompt: str) -> Any:
     contents=f"{prompt}")
 
 
-@perf
+@perf_counter
 def sanitize_gemini_response(response: Any) -> JournalEntry:
   cleaned_response = response.text.strip().strip('`').strip()
   if cleaned_response.lower().startswith("json"):

@@ -63,8 +63,7 @@ def download_gs(creds: Any) -> None:
 
   file_path = os.path.join(f"{root_dir}/{GS_FILENAME}", f"{GS_FILENAME}.gs")
 
-  with open(file_path, "w", encoding="utf-8") as f:
-    f.write(google_script)
+  with open(file_path, "w", encoding="utf-8") as f: f.write(google_script)
 
   sys.exit("Google script downloaded")
 

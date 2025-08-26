@@ -11,7 +11,7 @@ from datetime import datetime
 from prompt.journal_entry import generate_prompt
 from agents.gemini import gemini_response, sanitize_gemini_response
 from helpers.parse_gs import google_script
-from helpers.perf import perf
+from helpers.perf_counter import perf_counter
 
 
 FONT_FAMILY = "Roboto"
@@ -252,7 +252,7 @@ class JournalEntrySheet(GoogleSheet):
     super().__init__(redis, user_id, name)
 
   # TODO: Improve performance
-  @perf
+  @perf_counter
   def generate(self, t: List[str]) -> Optional[List[List[str]]]:
     # Generate prompt
     prompt = generate_prompt({
