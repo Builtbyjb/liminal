@@ -3,21 +3,6 @@ from datetime import date as dt, datetime as dtt
 from typing import List, Optional
 
 
-# class Transaction(BaseModel):
-#   id: str
-#   date: dt
-#   amount: float
-#   institution: str
-#   institution_account_name: str
-#   institution_account_type: str
-#   category: str
-#   payment_channel: str
-#   merchant_name: str
-#   currency_code: str
-#   pending: bool
-#   authorized_date: Optional[dt]
-
-
 class Counterparty(BaseModel):
   confidence_level: str
   entity_id: Optional[str]
@@ -119,16 +104,3 @@ class PlaidResponse(BaseModel):
   removed: List[RemovedTransaction]
   request_id: str
   transactions_update_status: str
-
-
-class JournalAccount(BaseModel):
-  name: str
-  account_id: str
-  amount: str
-
-
-class JournalEntry(BaseModel):
-  date: dt
-  description: str
-  debit: List[JournalAccount]
-  credit: List[JournalAccount]

@@ -2,7 +2,7 @@ import os
 import json
 from google import genai
 from typing import Any
-from thinkledger.utils.types import JournalEntry
+from thinkledger.types.google_types import JournalEntry
 from thinkledger.utils.context import DEBUG
 from thinkledger.helpers.perf_counter import perf_counter
 

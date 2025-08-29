@@ -6,7 +6,7 @@ from thinkledger.utils.logger import log
 from thinkledger.utils.util import invert_amount
 from typing import Generator, List
 from sqlmodel import Session
-from thinkledger.utils.types import PlaidTransaction, PlaidResponse
+from thinkledger.types.plaid_types import PlaidTransaction, PlaidResponse
 from thinkledger.utils.context import DEBUG
 
 

@@ -5,7 +5,7 @@ from typing import Optional, Tuple, Any, List
 import os
 from thinkledger.utils.constants import TOKEN_URL
 from thinkledger.utils.logger import log
-from thinkledger.utils.types import JournalEntry
+from thinkledger.types.google_types import JournalEntry
 from thinkledger.utils.context import DEBUG
 from datetime import datetime
 from thinkledger.prompt.journal_entry import generate_prompt

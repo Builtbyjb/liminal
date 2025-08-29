@@ -45,7 +45,6 @@ select = [
 
 extend-select = [
   "TC003", # Type checking
-  "N",     # Pep8 naming convention
   # "TD003", # Check for TODO comments
 ]
 

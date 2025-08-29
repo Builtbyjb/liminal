@@ -1,7 +1,10 @@
 root_dir = "."
 
 [os.unix]
-dev = ["DEBUG=2 python3 -m thinkledger"]
+dev = [
+    "ngrok http --url=admittedly-adequate-scorpion.ngrok-free.app 3000",
+    "DEBUG=2 python3 -m thinkledger"
+    ]
 prod = []
 test = []
 
@@ -11,6 +14,13 @@ prod = []
 test = []
 
 [exclude]
-dir = [".git", "__pycache__", "mypy_cache"]
+dir = [
+    ".git",
+    "node_modules",
+    "__pycache__",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".vscode",
+    ".venv",]
 file = []
 ext = ["toml"]
