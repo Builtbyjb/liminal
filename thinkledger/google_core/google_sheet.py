@@ -3,15 +3,15 @@ from google.oauth2.credentials import Credentials
 from redis import Redis
 from typing import Optional, Tuple, Any, List
 import os
-from utils.constants import TOKEN_URL
-from utils.logger import log
-from utils.types import JournalEntry
-from utils.context import DEBUG
+from thinkledger.utils.constants import TOKEN_URL
+from thinkledger.utils.logger import log
+from thinkledger.utils.types import JournalEntry
+from thinkledger.utils.context import DEBUG
 from datetime import datetime
-from prompt.journal_entry import generate_prompt
-from agents.gemini import gemini_response, sanitize_gemini_response
-from helpers.parse_gs import google_script
-from helpers.perf_counter import perf_counter
+from thinkledger.prompt.journal_entry import generate_prompt
+from thinkledger.agents.gemini import gemini_response, sanitize_gemini_response
+from thinkledger.helpers.parse_gs import google_script
+from thinkledger.helpers.perf_counter import perf_counter
 
 
 FONT_FAMILY = "Roboto"
@@ -263,11 +263,13 @@ class JournalEntrySheet(GoogleSheet):
       "merchant_name": t[8],
       "pending": t[10],
     })
+
     # Get gemini response
     try: response = gemini_response(prompt)
     except Exception as e:
       log.error(f"Error getting gemini response: {e}")
       return None
+
     # Sanitize gemini response
     try: sanitized_response = sanitize_gemini_response(response)
     except Exception as e:
@@ -276,19 +278,24 @@ class JournalEntrySheet(GoogleSheet):
 
     if DEBUG >= 2: log.info(f"sanitized_response: {sanitized_response}")
 
+    @perf_counter
     def helper(r: JournalEntry) -> List[List[str]]:
       """
       Helps create a journal entry. Accounts for multiple debit and credit account values
       """
       m_list: List[List[str]] = []
+
       # Append first debit value, with date and description
       m_list.append([str(r.date), r.description, r.debit[0].name, r.debit[0].account_id,
                      r.debit[0].amount, ""])
+
       # Append debit values
       for i in range(len(r.debit)):
         if i == 0: continue
         m_list.append(["", "", r.debit[i].name, r.debit[i].account_id, r.debit[i].amount, ""])
+
       # Append credit values
       for c in r.credit: m_list.append(["", "", c.name, c.account_id, "", c.amount])
       return m_list
+
     return helper(sanitized_response)

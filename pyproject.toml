@@ -1,7 +1,7 @@
 [project]
 name = "thinkledger"
 version = "0.1.0"
-description = "A full stack business assistant"
+description = "An intelligent operating system for businesses"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

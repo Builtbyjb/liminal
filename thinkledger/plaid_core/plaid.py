@@ -1,13 +1,13 @@
-from utils.plaid_utils import create_plaid_client
+from thinkledger.utils.plaid_utils import create_plaid_client
 from plaid.model.transactions_sync_request import TransactionsSyncRequest
 from plaid.model.transactions_sync_response import TransactionsSyncResponse
-from database.postgres.postgres_schema import Account, Institution
-from utils.logger import log
-from utils.util import invert_amount
+from thinkledger.database.postgres.postgres_schema import Account, Institution
+from thinkledger.utils.logger import log
+from thinkledger.utils.util import invert_amount
 from typing import Generator, List
 from sqlmodel import Session
-from utils.types import PlaidTransaction, PlaidResponse
-from utils.context import DEBUG
+from thinkledger.utils.types import PlaidTransaction, PlaidResponse
+from thinkledger.utils.context import DEBUG
 
 
 def get_transactions(access_token: str) -> Generator[List[PlaidTransaction], None, None]:

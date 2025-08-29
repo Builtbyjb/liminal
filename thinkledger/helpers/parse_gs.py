@@ -1,8 +1,8 @@
 import os, re
 from pathlib import Path
-from utils.constants import GS_FILENAME
+from thinkledger.utils.constants import GS_FILENAME
 from typing import List
-from utils.context import DEBUG
+from thinkledger.utils.context import DEBUG
 import uuid
 from redis import Redis
 

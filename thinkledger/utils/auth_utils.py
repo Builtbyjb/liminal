@@ -2,10 +2,10 @@ import os
 from google_auth_oauthlib.flow import Flow
 import requests
 from typing import Optional, List
-from utils.constants import TOKEN_INFO_URL, TOKEN_URL
-from utils.logger import log
-from redis import Redis
-from utils.context import DEBUG
+from thinkledger.utils.constants import TOKEN_INFO_URL, TOKEN_URL
+from thinkledger.utils.logger import log
+from thinkledger.database.redis.redis import get_redis
+from thinkledger.utils.context import DEBUG
 
 
 def sign_in_auth_config() -> Flow:
@@ -105,13 +105,13 @@ def refresh_access_token(refresh_token: str, client_id: str, client_secret: str)
     return None
 
 
-def auth_service(redis: Redis, user_id: str) -> bool:
+def auth_service(user_id: str) -> bool:
   """
     Authenticate service token
   """
-  with redis as r:
+  with get_redis() as redis:
     try:
-      access_token = r.get(f"access_token:{user_id}")
+      access_token = redis.get(f"access_token:{user_id}")
     except Exception as e:
       log.error(f"Error fetching user data or access token: {e}")
       return False
@@ -124,7 +124,7 @@ def auth_service(redis: Redis, user_id: str) -> bool:
     if not verify_access_token(str(access_token)):
       if DEBUG >= 1: log.info("Invalid or expired access token")
       # If access token verification fails, try refreshing the token
-      try: refresh_token = r.get(f"refresh_token:{user_id}")
+      try: refresh_token = redis.get(f"refresh_token:{user_id}")
       except Exception as e:
         log.error(f"Error fetching refresh token: {e}")
         return False
@@ -143,7 +143,7 @@ def auth_service(redis: Redis, user_id: str) -> bool:
         log.error("Error refreshing access token")
         return False
 
-      try: r.set(f"access_token:{user_id}", new_access_token)
+      try: redis.set(f"access_token:{user_id}", new_access_token)
       except Exception as e:
         log.error(f"Error setting new access token: {e}")
         return False

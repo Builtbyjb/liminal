@@ -22,4 +22,9 @@ class ContextVar:
   def __repr__(self): return f"ContextVar(key='{self.key}', value={self.value})"
 
 
+"""
+DEBUG Levels
+* DEBUG=2: Disables postgres database connection and authentication
+* DEBUG=1: Displays logging info
+"""
 DEBUG = ContextVar("DEBUG", 0)

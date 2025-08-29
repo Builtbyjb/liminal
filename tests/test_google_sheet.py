@@ -3,8 +3,8 @@ from unittest.mock import Mock, patch, ANY
 from redis import Redis
 from datetime import datetime
 from googleapiclient.errors import HttpError
-from google_core.google_sheet import GoogleSheet, JournalEntrySheet
-from utils.types import JournalEntry, JournalAccount
+from thinkledger.google_core.google_sheet import GoogleSheet, JournalEntrySheet
+from thinkledger.utils.types import JournalEntry, JournalAccount
 import os
 
 

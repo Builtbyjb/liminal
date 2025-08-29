@@ -2,9 +2,9 @@ import os
 import json
 from google import genai
 from typing import Any
-from utils.types import JournalEntry
-from utils.context import DEBUG
-from helpers.perf_counter import perf_counter
+from thinkledger.utils.types import JournalEntry
+from thinkledger.utils.context import DEBUG
+from thinkledger.helpers.perf_counter import perf_counter
 
 
 @perf_counter

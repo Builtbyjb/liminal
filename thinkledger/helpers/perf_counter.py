@@ -1,9 +1,9 @@
 from typing import Callable, Any
 from functools import wraps
 import time
-from utils.util import time_format
-from utils.context import DEBUG
-from utils.logger import log
+from thinkledger.utils.util import time_format
+from thinkledger.utils.context import DEBUG
+from thinkledger.utils.logger import log
 
 
 def perf_counter(func: Callable[..., Any]) -> Callable[..., Any]:
