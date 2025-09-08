@@ -10,14 +10,14 @@ import redis
 
 
 def delete() -> None:
-  redis_url = os.getenv("REDIS_URL")
-  if redis_url is None: sys.exit("REDIS_URL environment variable is not set")
-  redis_client = redis.Redis.from_url(redis_url)
-  redis_client.flushall()
-  print("Redis database cleared successfully")
-  return None
+    redis_url = os.getenv("REDIS_URL")
+    if redis_url is None: sys.exit("REDIS_URL environment variable is not set")
+    redis_client = redis.Redis.from_url(redis_url)
+    redis_client.flushall()
+    print("Redis database cleared successfully")
+    return None
 
 
 if __name__ == "__main__":
-  load_dotenv()
-  delete()
+    load_dotenv()
+    delete()

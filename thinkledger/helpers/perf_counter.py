@@ -7,14 +7,14 @@ from thinkledger.utils.logger import log
 
 
 def perf_counter(func: Callable[..., Any]) -> Callable[..., Any]:
-  """
-  Logs how long a function takes to execute
-  """
-  @wraps(func)
-  def wrapper(*args, **kwargs) -> Any:
-    start = time.perf_counter()
-    results = func(*args, **kwargs)
-    end = time.perf_counter()
-    if DEBUG >= 2: log.info(f"def {func.__name__}() took {time_format(end - start)}")
-    return results
-  return wrapper
+    """
+    Logs how long a function takes to execute
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs) -> Any:
+        start = time.perf_counter()
+        results = func(*args, **kwargs)
+        end = time.perf_counter()
+        if DEBUG >= 2: log.info(f"def {func.__name__}() took {time_format(end - start)}")
+        return results
+    return wrapper

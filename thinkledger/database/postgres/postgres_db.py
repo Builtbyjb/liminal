@@ -17,9 +17,9 @@ else: sys.exit("Could not get postgres url from env variables")
 # Dependency to get DB session
 @contextlib.contextmanager
 def get_db() -> Any:
-  with Session(engine) as session:
-    try: yield session
-    finally: session.close()
+    with Session(engine) as session:
+        try: yield session
+        finally: session.close()
 
 
 # Function to create all tables
