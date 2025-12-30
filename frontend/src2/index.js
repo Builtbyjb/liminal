@@ -1,0 +1,120 @@
+import { handleAlert } from "./utils.min.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.getElementById("menu-button");
+  const sideBar = document.getElementById("side-bar");
+  const closeButton = document.getElementById("close-button");
+  const body = document.getElementById("body");
+
+  function openMenu() {
+    sideBar.classList.remove("hidden");
+    body.classList.add("overflow-y-hidden");
+    console.log(body.classList);
+  }
+
+  function closeMenu() {
+    sideBar.classList.add("hidden");
+    body.classList.remove("overflow-y-hidden");
+    console.log(body.classList);
+  }
+
+  // menuButton.addEventListener("click", openMenu);
+  // closeButton.addEventListener("click", closeMenu);
+
+  const joinWaitlistBtns = document.querySelectorAll("#display-join-waitlist-form");
+  const joinWaitlistForms = document.querySelectorAll("#join-waitlist-form");
+  const closeJoinWaitlistBtns = document.querySelectorAll("#close-join-waitlist-form");
+
+  joinWaitlistBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.classList.add("hidden");
+      joinWaitlistForms.forEach((form) => {
+        body.classList.add("overflow-hidden");
+        form.classList.remove("hidden");
+      });
+    });
+  });
+
+  closeJoinWaitlistBtns.forEach((closeBtn) => {
+    closeBtn.addEventListener("click", () => {
+      closeJoinWaitlistPopup();
+    });
+  });
+
+  // Send join waitlist email
+  document.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const elementId = event.target.id;
+
+    if (elementId === "join-waitlist-submit") {
+      const firstname = event.target.firstname.value;
+      const lastname = event.target.lastname.value;
+      const email = event.target.email.value;
+
+      const formData = new FormData();
+      formData.append("firstname", firstname);
+      formData.append("lastname", lastname);
+      formData.append("email", email);
+
+      await addToWaitlist(formData);
+    }
+  });
+
+  function closeJoinWaitlistPopup() {
+    clearForm();
+
+    joinWaitlistBtns.forEach((btn) => {
+      btn.classList.remove("hidden");
+    });
+
+    joinWaitlistForms.forEach((form) => {
+      form.classList.add("hidden");
+    });
+
+    body.classList.remove("overflow-hidden");
+  }
+
+  // Clears join waitlist form
+  function clearForm() {
+    const lastnames = document.querySelectorAll("#lastname");
+    lastnames.forEach((lastname) => {
+      lastname.value = "";
+    });
+
+    const firstnames = document.querySelectorAll("#firstname");
+    firstnames.forEach((firstname) => {
+      firstname.value = "";
+    });
+
+    const emails = document.querySelectorAll("#email");
+    emails.forEach((email) => {
+      email.value = "";
+    });
+  }
+
+  // Adds contacts to waitlist
+  async function addToWaitlist(formData) {
+    try {
+      // Send fetch requests
+      const response = await fetch("/join-waitlist", {
+        method: "POST",
+        headers: {
+          ContentType: "application/json",
+        },
+        body: formData,
+      });
+
+      if (response.status === 200) {
+        handleAlert(
+          "You've been added to the waitlist! A welcome email has been sent to you. If you don't see it in your inbox, please check your spam folder. Thank you!",
+          "success",
+        );
+        closeJoinWaitlistPopup();
+      } else if (response.status === 400) {
+        handleAlert("Please provide valid credentials", "error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+});

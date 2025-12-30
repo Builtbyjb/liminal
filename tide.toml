@@ -2,6 +2,10 @@ root_dir = "."
 
 [os.unix]
 dev = ["DEBUG=2 python3 thinkledger/main.py"]
+frontend = [
+"npx tailwindcss -i ./static/style/input.css -o ./static/style/style.css --minify",
+"npm run minify"
+]
 prod = []
 test = []
 
@@ -11,6 +15,6 @@ prod = []
 test = []
 
 [exclude]
-dir = [".git", "__pycache__", "mypy_cache"]
+dir = [".git", "__pycache__", "mypy_cache",".git", "node_modules", ".vscode", ".venv"]
 file = []
 ext = ["toml"]
