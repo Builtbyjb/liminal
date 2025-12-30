@@ -1,6 +1,6 @@
-# Thinkledger license
+# Liminal license
 
-Copyright © Thinkledger, 2025
+Copyright © Liminal, 2025
 
 ## 1. Grant of Use
 
@@ -37,4 +37,4 @@ This license is automatically terminated if you violate any of its terms.
 
 ## 6. Contact
 
-For inquiries about licensing, please contact: admin@thinkledger.app
+For inquiries about licensing, please contact: awotideajibola@gmail.com
