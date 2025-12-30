@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fdfffd;
+  --color-primary: #dceee1;
+  --color-secondary: #1f583e;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Roboto Condensed", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+  p,
+  a,
+  li,
+  input,
+  button,
+  div,
+  textarea {
+    font-family: "Roboto Slab", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+}
+
+.sidebar-transition {
+  transition: width 0.2s ease-in-out;
+}
+
+.dropdown-transition {
+  transition:
+    max-height 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+}
