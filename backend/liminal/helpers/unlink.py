@@ -6,15 +6,15 @@ from plaid.model.item_remove_request import ItemRemoveRequest
 
 
 def unlink_plaid_account() -> None:
-  if len(sys.argv) != 2: sys.exit("Usage: python unlink.py <access_token>")
-  client = create_plaid_client()
-  try:
-    request = ItemRemoveRequest(access_token=sys.argv[1])
-    response = client.item_remove(request)
-    print(response)
-    sys.exit("Account unlinked successfully")
-  except Exception: sys.exit("Error unlinking account")
+    if len(sys.argv) != 2: sys.exit("Usage: python unlink.py <access_token>")
+    client = create_plaid_client()
+    try:
+        request = ItemRemoveRequest(access_token=sys.argv[1])
+        response = client.item_remove(request)
+        print(response)
+        sys.exit("Account unlinked successfully")
+    except Exception: sys.exit("Error unlinking account")
 
 
 if __name__ == "__main__":
-  unlink_plaid_account()
+    unlink_plaid_account()
