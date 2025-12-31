@@ -17,15 +17,15 @@
 #         with:
 #           python-version: "3.12"
 
-- name: Install dependencies
-  run: |
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    uv sync --frozen --no-cache
+# - name: Install dependencies
+#   run: |
+#     curl -LsSf https://astral.sh/uv/install.sh | sh
+#     uv sync --frozen --no-cache
 
-- name: Install linters
-  run: |
-    uv tool install ruff
-    uv tool install "mypy==1.15.0"
+# - name: Install linters
+#   run: |
+#     uv tool install ruff
+#     uv tool install "mypy==1.15.0"
 
 #       - name: Run ruff
 #         run: ruff check .
