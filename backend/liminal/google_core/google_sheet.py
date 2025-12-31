@@ -282,8 +282,7 @@ class JournalEntrySheet(GoogleSheet):
       """
       m_list: List[List[str]] = []
       # Append first debit value, with date and description
-      m_list.append([str(r.date), r.description, r.debit[0].name, r.debit[0].account_id,
-                     r.debit[0].amount, ""])
+      m_list.append([str(r.date), r.description, r.debit[0].name, r.debit[0].account_id, r.debit[0].amount, ""])
       # Append debit values
       for i in range(len(r.debit)):
         if i == 0: continue
