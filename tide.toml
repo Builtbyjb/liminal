@@ -12,6 +12,13 @@ prod = []
 test = []
 
 [exclude]
-dir = [".git", "__pycache__", "mypy_cache",".git", "node_modules", ".vscode", ".venv"]
+dir = [
+    ".git",
+    "node_modules",
+    "__pycache__",
+    ".ruff_cache",
+    ".mypy_cache",
+    ".vscode",
+    ".venv",]
 file = []
 ext = ["toml"]
