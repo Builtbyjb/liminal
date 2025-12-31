@@ -1,0 +1,27 @@
+[project]
+name = "thinkledger"
+version = "0.1.0"
+description = "An intelligent operating system for businesses"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "celery>=5.5.2",
+  "google-api-python-client>=2.167.0",
+  "google-auth-oauthlib>=1.2.1",
+  "google-genai>=1.14.0",
+  "mypy>=1.16.0",
+  "pip>=25.0.1",
+  "plaid-python>=32.0.0",
+  "pre-commit>=4.2.0",
+  "psycopg2-binary>=2.9.10",
+  "python-dotenv>=1.1.0",
+  "redis>=5.2.1",
+  "requests>=2.32.3",
+  "ruff>=0.11.7",
+  "sendgrid>=6.11.0",
+  "sqlmodel>=0.0.24",
+]
+
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"

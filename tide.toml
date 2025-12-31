@@ -1,15 +1,13 @@
 root_dir = "."
 
 [os.unix]
-dev = [
-    "ngrok http --url=admittedly-adequate-scorpion.ngrok-free.app 3000",
-    "DEBUG=2 python3 -m thinkledger"
-    ]
-prod = []
+fd = ["cd frontend && npm run dev" ]
+ext = ["cd extension && npm run build"]
 test = []
 
 [os.windows]
-dev = []
+fd = ["cd frontend && npm run dev" ]
+ext = ["cd extension && npm run build"]
 prod = []
 test = []
 
