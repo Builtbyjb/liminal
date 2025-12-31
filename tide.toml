@@ -1,16 +1,13 @@
 root_dir = "."
 
 [os.unix]
-dev = ["DEBUG=2 python3 thinkledger/main.py"]
-frontend = [
-"npx tailwindcss -i ./static/style/input.css -o ./static/style/style.css --minify",
-"npm run minify"
-]
-prod = []
+fd = ["cd frontend && npm run dev" ]
+ext = ["cd extension && npm run build"]
 test = []
 
 [os.windows]
-dev = []
+fd = ["cd frontend && npm run dev" ]
+ext = ["cd extension && npm run build"]
 prod = []
 test = []
 

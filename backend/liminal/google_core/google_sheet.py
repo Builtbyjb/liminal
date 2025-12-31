@@ -18,9 +18,7 @@ FONT_FAMILY = "Roboto"
 
 
 class GoogleSheet:
-  def __init__(
-      self, redis: Redis,  user_id: str, name: Optional[str] = None, init: bool = False
-      ) -> None:
+  def __init__(self, redis: Redis,  user_id: str, name: Optional[str] = None, init: bool = False) -> None:
     self._user_id = user_id
     self._name = name
     self._redis = redis
