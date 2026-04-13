@@ -1,14 +1,35 @@
+# prod
+dist/
+
+# dev
+.yarn/
+!.yarn/releases
+.vscode/*
+!.vscode/launch.json
+!.vscode/*.code-snippets
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf
+
+# deps
+node_modules/
+.wrangler
+
+# env
 .env
-.zed
-/tmp/
-tailwindcss
-node_modules
-.venv
-__pycache__
-.mypy_cache
-.ruff_cache
+.env.production
+.dev.vars
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# misc
 .DS_Store
-.pytest_cache
-.ropeproject
-*.egg-info/
-build/
+
+codebook.toml
